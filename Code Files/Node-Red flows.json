@@ -1,0 +1,554 @@
+[
+    {
+        "id": "144b8f95e4dc936c",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "26d36ba00a3017f1",
+        "type": "ui_chart",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "group": "ec8393d0ac087007",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Past",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "Y-M-D",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "60",
+        "ymax": "100",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#008000",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 790,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "945e4eace87fa46d",
+        "type": "debug",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 750,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "668eec7780a460b0",
+        "type": "file in",
+        "z": "144b8f95e4dc936c",
+        "name": "past_RHval.csv",
+        "filename": "/home/rpi/Desktop/IOT/past_RHval.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 320,
+        "y": 360,
+        "wires": [
+            [
+                "da19967c2de415b9",
+                "945e4eace87fa46d"
+            ]
+        ]
+    },
+    {
+        "id": "da19967c2de415b9",
+        "type": "csv",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 470,
+        "y": 440,
+        "wires": [
+            [
+                "4ca224185815f7e8",
+                "945e4eace87fa46d"
+            ]
+        ]
+    },
+    {
+        "id": "4ca224185815f7e8",
+        "type": "function",
+        "z": "144b8f95e4dc936c",
+        "name": "graph generate",
+        "func": "var payload = msg.payload;\nvar data_out = [];\n\nfor (let i = 0; i < payload.length; i++) {\n    var Past_date = payload[i].Past_date.split(\"/\");\n    var pdate = Past_date[0] + \"/\" + Past_date[1] + \"/\" + Past_date[2];\n    \n    var humidity = parseInt(payload[i][\"Past_RH_val\"]);\n    var hum = { \"x\": pdate, \"y\": humidity };\n\n    data_out.push(hum);\n}\n\nmsg.payload = [{\n    \"series\": [\"Past_RH_val\"],\n    \"data\": [data_out],\n    \"labels\": [\"Past_RH_val\"]\n}];\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 520,
+        "wires": [
+            [
+                "945e4eace87fa46d",
+                "26d36ba00a3017f1"
+            ]
+        ]
+    },
+    {
+        "id": "7a4378ee270ff94d",
+        "type": "inject",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "start",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "668eec7780a460b0"
+            ]
+        ]
+    },
+    {
+        "id": "bfdb5f4fcfd89383",
+        "type": "inject",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "v": "start",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "start",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 560,
+        "wires": [
+            [
+                "12401cc6b324665f"
+            ]
+        ]
+    },
+    {
+        "id": "3ddedc860b259f2d",
+        "type": "ui_chart",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "group": "02ce0dc972133325",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "label": "Future",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "Y-M-D",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "50",
+        "ymax": "90",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#ff8040",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 770,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "842d98531dd86226",
+        "type": "debug",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "12401cc6b324665f",
+        "type": "file in",
+        "z": "144b8f95e4dc936c",
+        "name": "future_RHval.csv",
+        "filename": "/home/rpi/Desktop/IOT/future_RHval.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 310,
+        "y": 640,
+        "wires": [
+            [
+                "58a1216a85ac69a0",
+                "842d98531dd86226"
+            ]
+        ]
+    },
+    {
+        "id": "58a1216a85ac69a0",
+        "type": "csv",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 470,
+        "y": 720,
+        "wires": [
+            [
+                "842d98531dd86226",
+                "a950bfc7244a8360"
+            ]
+        ]
+    },
+    {
+        "id": "a950bfc7244a8360",
+        "type": "function",
+        "z": "144b8f95e4dc936c",
+        "name": "graph generate",
+        "func": "var payload = msg.payload;\nvar data_out = [];\nvar a1 = [];\n\nfor (let i = 0; i < payload.length; i++) {\n    var fdate = [];\n\n    var hum = { \"x\": payload[i][\"Future_date\"], \"y\": parseFloat(payload[i][\"Future_RH_val\"]) };\n\n    a1.push(hum);\n}\n\ndata_out = [a1];\nmsg.payload = [{\n    \"series\": [\"Predicted Humidity\"],\n    \"data\": data_out,\n    \"labels\": [\"predicted humidity(change this)\"]\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 800,
+        "wires": [
+            [
+                "842d98531dd86226",
+                "3ddedc860b259f2d"
+            ]
+        ]
+    },
+    {
+        "id": "945c589e761fb9a2",
+        "type": "debug",
+        "z": "144b8f95e4dc936c",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "b85e81137a2fb1f1",
+        "type": "mqtt in",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "topic": "currentRH",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "ec0dcad6287b8057",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 40,
+        "wires": [
+            [
+                "945c589e761fb9a2",
+                "617ed974fc8f9d1e",
+                "5661c38ac96b8d54"
+            ]
+        ]
+    },
+    {
+        "id": "617ed974fc8f9d1e",
+        "type": "function",
+        "z": "144b8f95e4dc936c",
+        "name": "guage function",
+        "func": "const value = msg.payload;\n\nmsg = {\n    ui_control: {\n        gtype: \"gauge\",\n        min: 70,\n        max: 130,\n        colors: [\"green\", \"blue\", \"yellow\", \"orange\", \"red\"],\n        seg1: 80,\n        seg2: 90,\n        seg3: 103,\n        seg4: 124\n\n    },\n    payload: value\n};\n\nreturn msg;\n\n/*const value = msg.payload\n\nmsg = {\n    ui_control:{\n        gtype: \"guage\",\n        min: 60,\n        max: 137,\n        colors: [\"green\",\"blue\",\"yellow\",\"orange\",\"red\"],\n        seg1:80,\n        seg2:90,\n        seg3:103,\n        seg4: 124,\n        seg5: 137\n    },\n    payload: value\n}\nreturn msg;*/",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "d2aaef6101a7d944"
+            ]
+        ]
+    },
+    {
+        "id": "d2aaef6101a7d944",
+        "type": "ui_gauge",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "group": "04cfaf06392908ac",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Present",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 660,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6baa5377f5156317",
+        "type": "ui_chart",
+        "z": "144b8f95e4dc936c",
+        "name": "",
+        "group": "04cfaf06392908ac",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Present",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "70",
+        "ymax": "130",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff8040",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5661c38ac96b8d54",
+        "type": "function",
+        "z": "144b8f95e4dc936c",
+        "name": "graph function",
+        "func": "const value = msg.payload;\n\nmsg = {\n    ui_control: {\n        look: \"line\",\n        ymin: 70,\n        ymax: 130       \n        \n    },\n    payload: value\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "6baa5377f5156317"
+            ]
+        ]
+    },
+    {
+        "id": "ec8393d0ac087007",
+        "type": "ui_group",
+        "name": "Past Relative Humidity Prediction",
+        "tab": "9dba3906ae81b6b8",
+        "order": 2,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "02ce0dc972133325",
+        "type": "ui_group",
+        "name": "Future Relative Humidity Prediction",
+        "tab": "9dba3906ae81b6b8",
+        "order": 3,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ec0dcad6287b8057",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "09a9c8d11f5c4e5b91c017954acd5127.s2.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "8787749d7d4c7e3a",
+        "clientid": "iot046",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "04cfaf06392908ac",
+        "type": "ui_group",
+        "name": "Current Relative Humidity",
+        "tab": "9dba3906ae81b6b8",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9dba3906ae81b6b8",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "Current RH",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8787749d7d4c7e3a",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    }
+]
