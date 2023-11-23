@@ -9,7 +9,6 @@ See our presentation - ![Link](https://www.canva.com/design/DAFh4VpQKJc/h8ul_FF6
 3. Display a visualization of, Current RH data coming from the sensors, Predicted past 12 months RH and Predicted RH 12 months ahead on a Node-RED dashboard. Use the ARIMA model for predictions.
 ## System architecture
 ![system architecture2](https://github.com/nesa12/IoT_Big_Data_Analysis_Project/assets/87229466/243d70dd-19b2-4409-91db-35574f1e596a)
-Architecture Description
 
 ## List of hardware
 
