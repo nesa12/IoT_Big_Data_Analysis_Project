@@ -1,7 +1,7 @@
 # IoT_Big_Data_Analysis_Project
 The project involves the use of a smart thermostat system to regulate the temperature of a living room, using a temperature sensor and warning alerts for extreme temperatures. A machine learning model is used for temperature forecasting, and a real-time dashboard is implemented to visualize the temperature data. Overall, the project aims to create a comfortable indoor environment and ensure the safety of individuals in extreme temperature conditions.
 
-See our presentation - ![Link](https://www.canva.com/design/DAFh4VpQKJc/h8ul_FF6yVEsvCU7TuvDVw/view?utm_content=DAFh4VpQKJc&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel) 
+See our presentation - ![Link](https://www.canva.com/design/DAFh4VpQKJc/h8ul_FF6yVEsvCU7TuvDVw) 
 
 ## Tasks of the project
 1. Sense the current ambient temperature (T) and relative humidity (RH).
@@ -13,35 +13,35 @@ See our presentation - ![Link](https://www.canva.com/design/DAFh4VpQKJc/h8ul_FF6
 ## List of hardware
 
 a.	Sensors
-•	DHT11 v1.0 Sensor
+- DHT11 v1.0 Sensor
 
 b.	Actuators
-•	LED 5mm Red Diffused
-•	LED 5mm Yellow Diffused
-•	Frasers 9 Steering Gear SG90 9g Tower Pro Servo 25cm
+-	LED 5mm Red Diffused
+-	LED 5mm Yellow Diffused
+-	Frasers 9 Steering Gear SG90 9g Tower Pro Servo 25cm
 
 c.	Other Devices
-•	male to male 40 jumper ribbon 20cm
-•	male to female 40 jumper wire (40 pin,20cm length)
-•	Raspberry Pi 3B+
-•	830 Tie Points Breadboard
-•	330 Ohm 1/4W, 5% Axial Resistor
-•	4 Pin Micro Switch (Short Handle) 6*6'4.3mm
-•	2.0 Normal Card Reader
-•	Micro SDHC Card 8GB
+-	male to male 40 jumper ribbon 20cm
+-	male to female 40 jumper wire (40 pin,20cm length)
+-	Raspberry Pi 3B+
+-	830 Tie Points Breadboard
+-	330 Ohm 1/4W, 5% Axial Resistor
+-	4 Pin Micro Switch (Short Handle) 6*6'4.3mm
+-	2.0 Normal Card Reader
+-	Micro SDHC Card 8GB
 
 Below components will be used in our proposed system:
-•	DHT11 v1.0 sensor
-•	Raspberry Pi 3 B+
-•	LED Bulbs
-•	Frasers 9 Steering Gear SG90 9g Tower pro Servo 25cm (180 degree)
+-	DHT11 v1.0 sensor
+-	Raspberry Pi 3 B+
+-	LED Bulbs
+-	Frasers 9 Steering Gear SG90 9g Tower pro Servo 25cm (180 degree)
 
 Technical Specifications
-•	70℉ to 135℉ range
-•	3.0V to 5.0V operating voltage
-•	750 ms sampling
-•	64-bit unique address
-•	One-Wire communication protocol
+-	70℉ to 135℉ range
+-	3.0V to 5.0V operating voltage
+-	750 ms sampling
+-	64-bit unique address
+-	One-Wire communication protocol
 
 ## Project Setup
 ![proj1](https://github.com/nesa12/IoT_Big_Data_Analysis_Project/assets/87229466/4585082a-4b5a-45f8-b384-d4d6d580d8c8) ![proj2](https://github.com/nesa12/IoT_Big_Data_Analysis_Project/assets/87229466/9a89ac99-17c0-4bea-8ea0-79d651404ff9)
