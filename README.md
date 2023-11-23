@@ -1,7 +1,5 @@
-# IoT_Big_Data_Analysis_Project
+# IoT_&_Big_Data_Analysis_Project
 The project involves the use of a smart thermostat system to regulate the temperature of a living room, using a temperature sensor and warning alerts for extreme temperatures. A machine learning model is used for temperature forecasting, and a real-time dashboard is implemented to visualize the temperature data. Overall, the project aims to create a comfortable indoor environment and ensure the safety of individuals in extreme temperature conditions.
-
-See our presentation - ![Link](https://www.canva.com/design/DAFh4VpQKJc/h8ul_FF6yVEsvCU7TuvDVw) 
 
 ## Tasks of the project
 1. Sense the current ambient temperature (T) and relative humidity (RH).
